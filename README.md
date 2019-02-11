@@ -26,18 +26,45 @@ First import and initialize the class:
 ```python
 from utils import ProxyRotator
 
-proxy\_rotator = ProxyRotator()
+proxy_rotator = ProxyRotator()
 
 ```
 
 After this, if `proxy_server` is called it will return a ip:port of a random proxy.
 
 ```python
-sample\_proxy = proxy\_rotator.proxy_server()
+proxy_rotator.proxy_server()
 ```
 
-With an output such as `{'https': '103.216.82.153:6666'}`. The list of proxys can be seen with `roxy\_rotator.proxies`
+With an output such as `{'https': '103.216.82.153:6666'}`. The list of proxys can be seen with `roxy_rotator.proxies`
 
 ### User Agents
+
+Works in the same way as the proxy rotator. However, in the class initialization it incorporates two options: `max_pages` and `name_regex`.
+
+```python
+from utils import UserAgentRotator
+
+user_rotator = UserAgentRotator(name_regex=r'(Linux|Computer|Chrome|Web Browser)', max_pages = 2)
+```
+
+`name_regex` chooses which kind of user-agents will be retrieved. The default is `r'(Linux|Computer|Chrome|Web Browser)'`. Take a look at the web page and change it appropiately with the name of the user-agents that you want to retrieve. `max_pages` controls how many pages are used to retrieve user-agents from each type. Beware that a high number here will imply a long scraping time.
+
+You can retrieve a user-agent randomly with:
+
+```python
+user_rotator.user_agent_server()
+```
+
+Producing the following output: `'Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.30 (KHTML, like Gecko) Ubuntu/10.10 Chromium/12.0.742.112 Chrome/12.0.742.112 Safari/534.30'`
+
+### Example with requests
+
+```python
+
+from requests import get
+
+req = get("www.google.com", proxies=proxy_rotator.proxy_server(), headers = {'User-Agent': user_rotator.user_agent_server()}
+```
 
 

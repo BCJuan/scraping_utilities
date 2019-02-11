@@ -65,7 +65,6 @@ class UserAgentRotator():
             for j in range(self.max_pages):
                 link = urljoin(base,i.parent.get('href'))
                 link = urljoin(link, str(j+1))
-                print(link)
                 req = get(link)
                 soup = BeautifulSoup(req.content, 'html.parser')
                 users = soup.find_all('td', class_='useragent')
