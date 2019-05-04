@@ -13,6 +13,9 @@ And obtains two sets: one of proxies, ip:port, and another of user-agents.
 
 This two sets are useful for scraping pages with "*safety*". Or better said to avoid getting blocked.
 
+The first time the program scrapes the webs it stores the results in two files just to avoid rescraping again and again. Nevertheless, if you want to scrape the pages again you can initialize the
+objects `ProxyRotator` and `UserAgentRotator` with the argument `reload=True`.
+
 ## How to use them
 
 In `utils.py` two classes can be found `UserAgentRotator` and `ProxyRotator`
